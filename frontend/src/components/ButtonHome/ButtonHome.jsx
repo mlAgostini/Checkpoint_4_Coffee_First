@@ -1,7 +1,17 @@
+import { useNavigate } from "react-router-dom";
+
 function ButtonHome() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/");
+  };
+
   return (
     <div>
-      <h2>Je suis le bouton de retour à la home</h2>
+      <button type="button" onClick={handleClick}>
+        Click to go back to home
+      </button>
     </div>
   );
 }
