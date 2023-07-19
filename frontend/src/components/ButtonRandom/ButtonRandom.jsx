@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ButtonContext } from "../../../contexts/ButtonContext";
 
 function ButtonRandom() {
+  const { toggleButton } = useContext(ButtonContext);
+
   const navigate = useNavigate();
 
   const handleClick = () => {
+    toggleButton();
     navigate("/listing");
   };
-
   return (
     <div>
       <button type="button" onClick={handleClick}>

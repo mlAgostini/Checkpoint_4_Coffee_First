@@ -4,14 +4,19 @@ import propTypes from "prop-types";
 export const ButtonContext = createContext();
 
 export function ButtonProvider({ children }) {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const toggleButton = () => {
+    setIsButtonClicked(!isButtonClicked);
+  };
 
   const buttonContextValue = useMemo(
     () => ({
-      isClicked,
-      setIsClicked,
+      isButtonClicked,
+      setIsButtonClicked,
+      toggleButton,
     }),
-    [isClicked, setIsClicked]
+    [isButtonClicked, setIsButtonClicked, toggleButton]
   );
 
   return (
@@ -23,7 +28,8 @@ export function ButtonProvider({ children }) {
 
 ButtonProvider.propTypes = {
   children: propTypes.shape({
-    isClicked: propTypes.bool,
-    setIsClicked: propTypes.bool,
+    isButtonClicked: propTypes.bool,
+    setIsButtonClicked: propTypes.bool,
+    toggleButton: propTypes.func,
   }).isRequired,
 };
