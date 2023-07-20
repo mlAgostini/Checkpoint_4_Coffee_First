@@ -1,0 +1,14 @@
+@import "../../app.scss";
+
+.home-container {
+  height: 70vh;
+  width: 80vw;
+  color: $background-dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-family: $title-font;
+  font-size: x-large;
+  //   border: 2px solid red;
+}

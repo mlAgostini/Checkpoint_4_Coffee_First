@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import "./listingCard.scss";
 
 function ListingCard({ data, label }) {
   return (
-    <div>
+    <div className="cardContent">
       <h2> {label} </h2>
       {data.map((member) => (
         <div key={member.id}>

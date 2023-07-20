@@ -5,6 +5,7 @@ import ButtonRandom from "../../components/ButtonRandom/ButtonRandom";
 import ButtonRegenerate from "../../components/ButtonRegenerate/ButtonRegenerate";
 import { ButtonContext } from "../../../contexts/ButtonContext";
 import ListingCard from "../../components/ListingCard/ListingCard";
+import "./listingView.scss";
 
 function ListingView() {
   const { isButtonClicked } = useContext(ButtonContext);
@@ -34,19 +35,23 @@ function ListingView() {
   const secondHalf = randomizedData.slice(halfLength);
 
   return (
-    <div className="card-container">
-      {data ? (
-        <ListingCard data={firstHalf} label="Machine de gauche" />
-      ) : (
-        <p>Loading ... </p>
-      )}
-      {data ? (
-        <ListingCard data={secondHalf} label="Machine de droite" />
-      ) : (
-        <p>Loading ... </p>
-      )}
-      {isButtonClicked ? <ButtonRegenerate /> : <ButtonRandom />}
-      <ButtonHome />
+    <div>
+      <div className="card-container">
+        {data ? (
+          <ListingCard data={firstHalf} label="Machine de gauche" />
+        ) : (
+          <p>Loading ... </p>
+        )}
+        {data ? (
+          <ListingCard data={secondHalf} label="Machine de droite" />
+        ) : (
+          <p>Loading ... </p>
+        )}
+      </div>
+      <div>
+        {isButtonClicked ? <ButtonRegenerate /> : <ButtonRandom />}
+        <ButtonHome />
+      </div>
     </div>
   );
 }
