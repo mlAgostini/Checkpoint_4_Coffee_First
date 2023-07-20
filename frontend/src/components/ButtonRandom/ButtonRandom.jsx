@@ -5,7 +5,7 @@ import { ButtonContext } from "../../../contexts/ButtonContext";
 import "./buttonRandom.scss";
 
 function ButtonRandom() {
-  const { toggleButton } = useContext(ButtonContext);
+  const { toggleButton, isButtonClicked } = useContext(ButtonContext);
 
   const navigate = useNavigate();
 
@@ -24,8 +24,14 @@ function ButtonRandom() {
         className="buttonRandom"
         onClick={handleRandomizeAndNavigate}
       >
-        <p>Let the Coffee Games begin !</p>
-        <p>(And may the odds of my randomizer always be in your favor)</p>
+        {isButtonClicked ? (
+          <div>Rerandomize</div>
+        ) : (
+          <div>
+            <p>Let the Coffee Games begin !</p>
+            <p>(And may the odds of my randomizer always be in your favor)</p>
+          </div>
+        )}
       </button>
     </div>
   );

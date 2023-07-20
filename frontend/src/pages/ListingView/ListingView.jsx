@@ -1,15 +1,12 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ButtonHome from "../../components/ButtonHome/ButtonHome";
 import ButtonRandom from "../../components/ButtonRandom/ButtonRandom";
-import ButtonRegenerate from "../../components/ButtonRegenerate/ButtonRegenerate";
-import { ButtonContext } from "../../../contexts/ButtonContext";
 import ListingCard from "../../components/ListingCard/ListingCard";
 import "./listingView.scss";
 
 function ListingView() {
-  const { isButtonClicked } = useContext(ButtonContext);
   const location = useLocation();
   const data = location.state && location.state.data;
 
@@ -63,7 +60,7 @@ function ListingView() {
         )}
       </div>
       <div>
-        {isButtonClicked ? <ButtonRegenerate /> : <ButtonRandom />}
+        <ButtonRandom />
         <ButtonHome />
       </div>
     </div>
