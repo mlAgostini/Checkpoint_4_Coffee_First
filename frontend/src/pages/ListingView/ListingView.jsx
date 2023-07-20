@@ -35,9 +35,16 @@ function ListingView() {
 
   return (
     <div className="card-container">
-      <h1>Je suis la page du tableau</h1>
-      {data ? <ListingCard data={firstHalf} /> : <p>Loading ... </p>}
-      {data ? <ListingCard data={secondHalf} /> : <p>Loading ... </p>}
+      {data ? (
+        <ListingCard data={firstHalf} label="Machine de gauche" />
+      ) : (
+        <p>Loading ... </p>
+      )}
+      {data ? (
+        <ListingCard data={secondHalf} label="Machine de droite" />
+      ) : (
+        <p>Loading ... </p>
+      )}
       {isButtonClicked ? <ButtonRegenerate /> : <ButtonRandom />}
       <ButtonHome />
     </div>

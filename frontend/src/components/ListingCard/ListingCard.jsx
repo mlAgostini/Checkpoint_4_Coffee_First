@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 
-function ListingCard({ data }) {
+function ListingCard({ data, label }) {
   return (
     <div>
+      <h2> {label} </h2>
       {data.map((member) => (
         <div key={member.id}>
           <h3>{member.name}</h3>
@@ -22,4 +23,5 @@ ListingCard.propTypes = {
       machine_id: PropTypes.number.isRequired,
     })
   ).isRequired,
+  label: PropTypes.string.isRequired,
 };
