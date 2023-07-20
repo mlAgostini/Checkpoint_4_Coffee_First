@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import "./listingCard.scss";
 
-function ListingCard({ data, label }) {
+function ListingCard({ data, machine }) {
   return (
     <div className="cardContent">
-      <h2> {label} </h2>
+      <p>Machine Name: {machine.machine_name}</p>
+      <p>Machine ID: {machine.id}</p>
       {data.map((member) => (
         <div key={member.id}>
           <h3>{member.name}</h3>
@@ -24,5 +25,8 @@ ListingCard.propTypes = {
       machine_id: PropTypes.number.isRequired,
     })
   ).isRequired,
-  label: PropTypes.string.isRequired,
+  machine: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    machine_name: PropTypes.string.isRequired,
+  }).isRequired,
 };

@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ButtonHome from "../../components/ButtonHome/ButtonHome";
 import ButtonRandom from "../../components/ButtonRandom/ButtonRandom";
@@ -11,6 +12,20 @@ function ListingView() {
   const { isButtonClicked } = useContext(ButtonContext);
   const location = useLocation();
   const data = location.state && location.state.data;
+
+  const [machine, setMachine] = useState([]);
+
+  useEffect(() => {
+    // Récupérer les informations de la table machine depuis votre backend
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/machine`)
+      .then((response) => {
+        setMachine(response.data); // Mettre à jour l'état avec les informations récupérées
+      })
+      .catch((error) => {
+        console.error("Error fetching machines:", error);
+      });
+  }, []);
 
   // Algorythme de Fischer-Yates
   function shuffleArray(array) {
@@ -37,16 +52,9 @@ function ListingView() {
   return (
     <div>
       <div className="card-container">
-        {data ? (
-          <ListingCard data={firstHalf} label="Machine de gauche" />
-        ) : (
-          <p>Loading ... </p>
-        )}
-        {data ? (
-          <ListingCard data={secondHalf} label="Machine de droite" />
-        ) : (
-          <p>Loading ... </p>
-        )}
+        <ListingCard data={firstHalf} machine={machine[0]} />
+
+        <ListingCard data={secondHalf} machine={machine[1]} />
       </div>
       <div>
         {isButtonClicked ? <ButtonRegenerate /> : <ButtonRandom />}
