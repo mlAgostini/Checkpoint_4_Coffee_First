@@ -13,14 +13,15 @@ function ListingView() {
   const location = useLocation();
   const data = location.state && location.state.data;
 
+  const [machineDataFetched, setMachineDataFetched] = useState(false);
   const [machine, setMachine] = useState([]);
 
   useEffect(() => {
-    // Récupérer les informations de la table machine depuis votre backend
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/machine`)
       .then((response) => {
-        setMachine(response.data); // Mettre à jour l'état avec les informations récupérées
+        setMachine(response.data);
+        setMachineDataFetched(true); // Indiquer que les données de machine ont été récupérées
       })
       .catch((error) => {
         console.error("Error fetching machines:", error);
@@ -52,9 +53,14 @@ function ListingView() {
   return (
     <div>
       <div className="card-container">
-        <ListingCard data={firstHalf} machine={machine[0]} />
-
-        <ListingCard data={secondHalf} machine={machine[1]} />
+        {machineDataFetched && machine.length >= 2 ? (
+          <>
+            <ListingCard data={firstHalf} machine={machine[0]} />
+            <ListingCard data={secondHalf} machine={machine[1]} />
+          </>
+        ) : (
+          <p>Loading ... </p>
+        )}
       </div>
       <div>
         {isButtonClicked ? <ButtonRegenerate /> : <ButtonRandom />}
