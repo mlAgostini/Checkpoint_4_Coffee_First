@@ -1,0 +1,20 @@
+@import "../../app.scss";
+
+.buttonRandom {
+  display: inline-block;
+  border: none;
+  border-radius: 6px;
+  background-image: linear-gradient(to right, #229631, #2dc842);
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.3s ease;
+  color: $white-text;
+
+  &:hover {
+    background-image: linear-gradient(to left, #229631, #2dc842);
+    transition: background-position 0.3s ease;
+    background-position: left;
+    cursor: pointer;
+    color: $white-text;
+  }
+}
