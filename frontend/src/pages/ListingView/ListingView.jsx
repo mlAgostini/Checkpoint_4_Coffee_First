@@ -47,13 +47,44 @@ function ListingView() {
   const firstHalf = randomizedData.slice(0, halfLength);
   const secondHalf = randomizedData.slice(halfLength);
 
+  const firstHalfWithMachineId = firstHalf.map((item) => ({
+    ...item,
+    machine_id: machine[0]?.id, // Mettre à jour machine_id avec l'id de la première machine
+  }));
+
+  const secondHalfWithMachineId = secondHalf.map((item) => ({
+    ...item,
+    machine_id: machine[1]?.id, // Mettre à jour machine_id avec l'id de la deuxième machine
+  }));
+
+  const updateUserMachineId = (userId, machineId) => {
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/members/${userId}`, {
+        machine_id: machineId,
+      })
+      // .then((response) => {
+      //   console.log("User updated successfully:", response.data);
+      // })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+      });
+  };
+
   return (
     <div>
       <div className="card-container">
         {machineDataFetched && machine.length >= 2 ? (
           <>
-            <ListingCard data={firstHalf} machine={machine[0]} />
-            <ListingCard data={secondHalf} machine={machine[1]} />
+            <ListingCard
+              data={firstHalfWithMachineId}
+              machine={machine[0]}
+              onUpdateUserMachineId={updateUserMachineId}
+            />
+            <ListingCard
+              data={secondHalfWithMachineId}
+              machine={machine[1]}
+              onUpdateUserMachineId={updateUserMachineId}
+            />
           </>
         ) : (
           <p>Loading ... </p>

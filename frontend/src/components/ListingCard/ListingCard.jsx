@@ -6,11 +6,13 @@ function ListingCard({ data, machine }) {
     <div className="cardContent">
       <p>Machine Name: {machine.machine_name}</p>
       <p>Machine ID: {machine.id}</p>
-      {data.map((member) => (
-        <div key={member.id}>
-          <h3>{member.name}</h3>
-        </div>
-      ))}
+      <div className="member-container">
+        {data.map((member) => (
+          <div className="member-name" key={member.id}>
+            <h3>{member.name}</h3>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

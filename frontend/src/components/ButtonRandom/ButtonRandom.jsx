@@ -1,18 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { ButtonContext } from "../../../contexts/ButtonContext";
 import "./buttonRandom.scss";
 
 function ButtonRandom() {
   const { toggleButton, isButtonClicked } = useContext(ButtonContext);
+  const [isRandomized, setIsRandomized] = useState(false);
 
   const navigate = useNavigate();
 
   const handleRandomizeAndNavigate = () => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/member`).then((response) => {
       const { data } = response;
+
       toggleButton();
+      setIsRandomized(true);
       navigate("/listing", { state: { data } });
     });
   };
@@ -25,7 +28,7 @@ function ButtonRandom() {
         onClick={handleRandomizeAndNavigate}
       >
         {isButtonClicked ? (
-          <div>Rerandomize</div>
+          <div>{isRandomized ? "Rerandomize" : "Randomize"}</div>
         ) : (
           <div>
             <p>Let the Coffee Games begin !</p>

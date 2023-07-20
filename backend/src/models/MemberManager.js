@@ -13,8 +13,8 @@ class MemberManager extends AbstractManager {
 
   update(member) {
     return this.database.query(
-      `update ${this.table} set name = ?, machine_id = ? where id = ?`,
-      [member.name, member.machine_id]
+      `update ${this.table} set  machine_id = ? where id = ?`,
+      [member.machine_id, member.id]
     );
   }
 }
