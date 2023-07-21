@@ -1,16 +1,29 @@
-import { useContext } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ButtonHome from "../../components/ButtonHome/ButtonHome";
 import ButtonRandom from "../../components/ButtonRandom/ButtonRandom";
-import ButtonRegenerate from "../../components/ButtonRegenerate/ButtonRegenerate";
-import { ButtonContext } from "../../../contexts/ButtonContext";
 import ListingCard from "../../components/ListingCard/ListingCard";
 import "./listingView.scss";
 
 function ListingView() {
-  const { isButtonClicked } = useContext(ButtonContext);
   const location = useLocation();
   const data = location.state && location.state.data;
+
+  const [machineDataFetched, setMachineDataFetched] = useState(false);
+  const [machine, setMachine] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/machine`)
+      .then((response) => {
+        setMachine(response.data);
+        setMachineDataFetched(true); // Indiquer que les données de machine ont été récupérées
+      })
+      .catch((error) => {
+        console.error("Error fetching machines:", error);
+      });
+  }, []);
 
   // Algorythme de Fischer-Yates
   function shuffleArray(array) {
@@ -34,23 +47,56 @@ function ListingView() {
   const firstHalf = randomizedData.slice(0, halfLength);
   const secondHalf = randomizedData.slice(halfLength);
 
+  const firstHalfWithMachineId = firstHalf.map((item) => ({
+    ...item,
+    machine_id: machine[0]?.id, // Mettre à jour machine_id avec l'id de la première machine
+  }));
+
+  const secondHalfWithMachineId = secondHalf.map((item) => ({
+    ...item,
+    machine_id: machine[1]?.id, // Mettre à jour machine_id avec l'id de la deuxième machine
+  }));
+
+  const updateUserMachineId = (userId, machineId) => {
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/members/${userId}`, {
+        machine_id: machineId,
+      })
+      // .then((response) => {
+      //   console.log("User updated successfully:", response.data);
+      // })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+      });
+  };
+
   return (
     <div>
       <div className="card-container">
-        {data ? (
-          <ListingCard data={firstHalf} label="Machine de gauche" />
-        ) : (
-          <p>Loading ... </p>
-        )}
-        {data ? (
-          <ListingCard data={secondHalf} label="Machine de droite" />
+        {machineDataFetched && machine.length >= 2 ? (
+          <>
+            <ListingCard
+              data={firstHalfWithMachineId}
+              machine={machine[0]}
+              onUpdateUserMachineId={updateUserMachineId}
+            />
+            <ListingCard
+              data={secondHalfWithMachineId}
+              machine={machine[1]}
+              onUpdateUserMachineId={updateUserMachineId}
+            />
+          </>
         ) : (
           <p>Loading ... </p>
         )}
       </div>
-      <div>
-        {isButtonClicked ? <ButtonRegenerate /> : <ButtonRandom />}
-        <ButtonHome />
+      <div className="btn-generate">
+        <div className="btn-one">
+          <ButtonRandom />
+        </div>
+        <div className="btn-two">
+          <ButtonHome />
+        </div>
       </div>
     </div>
   );

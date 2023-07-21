@@ -30,6 +30,7 @@ const read = (req, res) => {
 
 const edit = (req, res) => {
   const member = req.body;
+  // const memberId = req.params.id;
 
   // TODO validations (length, format...)
 

@@ -12,8 +12,10 @@ function ButtonRandom() {
   const handleRandomizeAndNavigate = () => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/member`).then((response) => {
       const { data } = response;
+
       toggleButton();
-      navigate("/listing", { state: { data } });
+
+      navigate("/listing", { state: { data, isRandomized: true } });
     });
   };
 
@@ -24,8 +26,10 @@ function ButtonRandom() {
         className="buttonRandom"
         onClick={handleRandomizeAndNavigate}
       >
-        <p>Let the Coffee Games begin !</p>
-        <p>(And may the odds of my randomizer always be in your favor)</p>
+        <div>
+          <p>Let the Coffee Games begin !</p>
+          <p>(And may the odds of my randomizer always be in your favor)</p>
+        </div>
       </button>
     </div>
   );

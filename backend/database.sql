@@ -27,5 +27,5 @@ FOREIGN KEY (machine_id) REFERENCES machine(id)
 
 -- Dumping data for table `member`
 
-INSERT INTO `member` (`id`, `name`) VALUES (1, 'Val'), (2, 'Tessa'), (3, 'Fantine'), (4, 'Valentin'), (5, 'Rudy'), (6, 'Anthony'), (7, 'Soufiane'), (8, 'Félicien'), (9, 'Alex Trot'), (10, 'Alex Vador'), (11, 'Alex Plaza'), (12, 'Ambre'), (13, 'Anne'), (14, 'Florent'), (15, 'Hugo'), (16, 'Imene'), (17, 'Jade-Ambre'), (18, 'Jocelyn'), (19, 'Khouloud'), (20, 'Marie'), (21, 'Mohamed'), (22, 'Michael'), (23, 'Romain'), (24, 'Sacha');
+INSERT INTO `member` (`id`, `name`) VALUES (1, 'Val'), (3, 'Fantine'), (5, 'Rudy'), (6, 'Anthony'), (8, 'Félicien'), (9, 'Alex Trot'), (11, 'Alex Plaza'), (15, 'Hugo'), (18, 'Jocelyn'), (19, 'Khouloud'), (20, 'Marie'), (22, 'Michael'), (23, 'Romain'), (24, 'Sacha');
 

@@ -1,7 +1,9 @@
 function ButtonRegenerate() {
   return (
     <div>
-      <button type="button">Je suis le bouton pour regénérer</button>
+      <button className="regen-button" type="button">
+        Not happy with your placement ? Rerandomize. We won't tell anyone.
+      </button>
     </div>
   );
 }
