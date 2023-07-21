@@ -1,18 +1,12 @@
 ## Concept
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying as simple as possible to use.
+This project is done for the Wild Code School, as a checkpoint 4.
+His goal is to maintain and keep order during coffee breaks. 
+Everyone hates waiting in line for a nice sip of coffee. 
+With this app, no need to fight ! The randomizer organizes things for you.
 
 ## Setup & Use
 
-### Windows users
-
-Be sure to run these commands in a git terminal to avoid [issues with newline formats](https://en.wikipedia.org/wiki/Newline#Issues_with_different_newline_formats):
-
-```
-git config --global core.eol lf
-git config --global core.autocrlf false
-```
 
 ### Project Initialization
 
