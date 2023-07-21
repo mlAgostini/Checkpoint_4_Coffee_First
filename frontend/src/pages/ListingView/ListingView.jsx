@@ -90,9 +90,13 @@ function ListingView() {
           <p>Loading ... </p>
         )}
       </div>
-      <div>
-        <ButtonRandom />
-        <ButtonHome />
+      <div className="btn-generate">
+        <div className="btn-one">
+          <ButtonRandom />
+        </div>
+        <div className="btn-two">
+          <ButtonHome />
+        </div>
       </div>
     </div>
   );

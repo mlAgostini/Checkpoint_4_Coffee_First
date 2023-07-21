@@ -12,6 +12,11 @@
     border-radius: 25px;
     background-color: #4e2a203e;
     box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.75);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #4e2a2056; /* Nouvelle couleur de fond au hover */
+    }
 
     .member-name {
       display: flex;

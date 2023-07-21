@@ -4,4 +4,21 @@
   width: 60vw;
   display: flex;
   gap: 20%;
+  font-family: $writing-font;
+  text-align: center;
+}
+
+.btn-generate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+
+  .btn-one {
+    margin-bottom: 2rem;
+  }
+
+  .btn-two {
+    margin-bottom: -5%;
+  }
 }

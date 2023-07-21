@@ -1,0 +1,14 @@
+@import "../../app.scss";
+
+.homeButton {
+  display: inline-block;
+  border: none;
+  border-radius: 6px;
+  height: 4vh;
+  background-image: linear-gradient(to right, #4e544f, #89a28d);
+  font-family: $writing-font;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

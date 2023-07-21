@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import axios from "axios";
 import { ButtonContext } from "../../../contexts/ButtonContext";
 import "./buttonRandom.scss";
 
 function ButtonRandom() {
-  const { toggleButton, isButtonClicked } = useContext(ButtonContext);
-  const [isRandomized, setIsRandomized] = useState(false);
+  const { toggleButton } = useContext(ButtonContext);
 
   const navigate = useNavigate();
 
@@ -15,8 +14,8 @@ function ButtonRandom() {
       const { data } = response;
 
       toggleButton();
-      setIsRandomized(true);
-      navigate("/listing", { state: { data } });
+
+      navigate("/listing", { state: { data, isRandomized: true } });
     });
   };
 
@@ -27,14 +26,10 @@ function ButtonRandom() {
         className="buttonRandom"
         onClick={handleRandomizeAndNavigate}
       >
-        {isButtonClicked ? (
-          <div>{isRandomized ? "Rerandomize" : "Randomize"}</div>
-        ) : (
-          <div>
-            <p>Let the Coffee Games begin !</p>
-            <p>(And may the odds of my randomizer always be in your favor)</p>
-          </div>
-        )}
+        <div>
+          <p>Let the Coffee Games begin !</p>
+          <p>(And may the odds of my randomizer always be in your favor)</p>
+        </div>
       </button>
     </div>
   );

@@ -3,18 +3,15 @@
 .buttonRandom {
   display: inline-block;
   border: none;
-  padding: 1.1rem;
   border-radius: 6px;
-  background-image: linear-gradient(to right, #4e544f, #2dc842);
+  background-image: linear-gradient(to right, #229631, #2dc842);
   background-size: 200% 100%;
   background-position: right;
   transition: background-position 0.3s ease;
   color: $white-text;
-  font-family: $writing-font;
-  font-size: larger;
 
   &:hover {
-    background-image: linear-gradient(to left, #4e544f, #2dc842);
+    background-image: linear-gradient(to left, #229631, #2dc842);
     transition: background-position 0.3s ease;
     background-position: left;
     cursor: pointer;

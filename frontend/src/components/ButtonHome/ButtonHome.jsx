@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./buttonHome.scss";
 
 function ButtonHome() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ function ButtonHome() {
 
   return (
     <div>
-      <button type="button" onClick={handleClick}>
+      <button className="homeButton" type="button" onClick={handleClick}>
         Click to go back to home
       </button>
     </div>

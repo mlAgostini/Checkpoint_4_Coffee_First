@@ -4,8 +4,8 @@ import "./listingCard.scss";
 function ListingCard({ data, machine }) {
   return (
     <div className="cardContent">
-      <p>Machine Name: {machine.machine_name}</p>
-      <p>Machine ID: {machine.id}</p>
+      <h2>{machine.machine_name}</h2>
+
       <div className="member-container">
         {data.map((member) => (
           <div className="member-name" key={member.id}>
